@@ -64,7 +64,7 @@ function DepthLoss:updateOutput(input)
         
         -- metric error
         fmse[i], fmselog[i], flsi[i], fabsrel[i], fsqrrel[i] = metric_error(gtz, transformed_weifeng_z_orig_size)
-      local local_image = torch.Tensor(1,img_original_height,img_original_width)
+        local local_image = torch.Tensor(1,img_original_height,img_original_width)
         local local_image2 = torch.Tensor(3,img_original_height,img_original_width)
         local output_image = torch.Tensor(3, img_original_height,img_original_width * 2)
 

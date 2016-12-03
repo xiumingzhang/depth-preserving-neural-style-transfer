@@ -49,7 +49,7 @@ function StyleLoss:updateOutput(input)
     self.loss = self.strength * self.crit(self.agg_out, target)
     self._target = target
   end
-  self.output = input
+  self.output = input  -- why update output as input?
   return self.output
 end
 
