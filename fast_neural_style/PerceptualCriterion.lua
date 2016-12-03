@@ -34,6 +34,7 @@ function crit:__init(args)
   self.content_loss_layers = {}
   self.style_loss_layers = {}
   self.deepdream_loss_layers = {}
+  self.depthmapping_loss_layers = {}
 
   -- Set up content loss layers
   for i, layer_string in ipairs(args.content_layers) do
@@ -59,6 +60,14 @@ function crit:__init(args)
     table.insert(self.deepdream_loss_layers, deepdream_loss_layer)
   end
   
+  -- Set up Depth Mapping layers
+  for i, layer_string in ipairs(args.depthmapping_layers) do
+    local weight = args.depthmappin_weights[i]
+    local depthmapping_loss_layer = nn.Depthmapping(weight)
+    layer_utils.insert_after(self.net, layer_string, depthmapping_loss_layer)
+    table.insert(self.depthmapping_loss_layers, depthmapping_loss_layer)
+  end
+
   layer_utils.trim_network(self.net)
   self.grad_net_output = torch.Tensor()
 
