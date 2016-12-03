@@ -7,7 +7,7 @@ require 'path'
 paths.dofile('../relative-depth/models/hourglass3.lua')
 -- Depth Loss NN goes here
 
-function DepthLoss:__init(strength, loss_type, agg_type)
+function DepthLoss:__init(strength, loss_type)
     self.g_model = get_model()
     self.g_model.period = 1
     self.g_model = g_model:cuda()
