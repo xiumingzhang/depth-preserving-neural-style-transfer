@@ -28,13 +28,14 @@ function crit:__init(args)
   args.content_layers = args.content_layers or {}
   args.style_layers = args.style_layers or {}
   args.deepdream_layers = args.deepdream_layers or {}
+  args.depth_layers = args.depth_layers or {}
   
   self.net = args.cnn
   self.net:evaluate()
   self.content_loss_layers = {}
   self.style_loss_layers = {}
   self.deepdream_loss_layers = {}
-  self.depthmapping_loss_layers = {}
+  self.depth_loss_layers = {}
 
   -- Set up content loss layers
   for i, layer_string in ipairs(args.content_layers) do
@@ -52,6 +53,14 @@ function crit:__init(args)
     table.insert(self.style_loss_layers, style_loss_layer)
   end
 
+  -- Set up Depth Mapping layers
+  for i, layer_string in ipairs(args.depth_layers) do
+    local weight = args.depth_weights[i]
+    local depth_loss_layer = nn.DepthLoss(weight) -- need to specify the arguments here
+    layer_utils.insert_after(self.net, layer_string, depth_loss_layer)
+    table.insert(self.depth_loss_layers, depth_loss_layer)
+  end
+
   -- Set up DeepDream layers
   for i, layer_string in ipairs(args.deepdream_layers) do
     local weight = args.deepdream_weights[i]
@@ -60,14 +69,6 @@ function crit:__init(args)
     table.insert(self.deepdream_loss_layers, deepdream_loss_layer)
   end
   
-  -- Set up Depth Mapping layers
-  for i, layer_string in ipairs(args.depthmapping_layers) do
-    local weight = args.depthmappin_weights[i]
-    local depthmapping_loss_layer = nn.Depthmapping(weight)
-    layer_utils.insert_after(self.net, layer_string, depthmapping_loss_layer)
-    table.insert(self.depthmapping_loss_layers, depthmapping_loss_layer)
-  end
-
   layer_utils.trim_network(self.net)
   self.grad_net_output = torch.Tensor()
 
@@ -130,6 +131,8 @@ function crit:updateOutput(input, target)
   if target.style_target then
     self.setStyleTarget(target.style_target)
   end
+  -- TODO: do we need to set depth target here?
+
 
   -- Make sure to set all content and style loss layers to loss mode before
   -- running the image forward.
