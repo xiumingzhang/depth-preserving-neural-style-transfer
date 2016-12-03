@@ -139,6 +139,9 @@ function crit:updateOutput(input, target)
   for i, style_loss_layer in ipairs(self.style_loss_layers) do
     style_loss_layer:setMode('loss')
   end
+  for i, depth_loss_layer in ipairs(self.depth_loss_layers) do
+    depth_loss_layer:setMode('loss')
+  end
 
   local output = self.net:forward(input)
 
@@ -150,6 +153,8 @@ function crit:updateOutput(input, target)
   self.content_losses = {}
   self.total_style_loss = 0
   self.style_losses = {}
+  self.total_depth_loss = 0
+  self.depth_losses = {}
   for i, content_loss_layer in ipairs(self.content_loss_layers) do
     self.total_content_loss = self.total_content_loss + content_loss_layer.loss
     table.insert(self.content_losses, content_loss_layer.loss)
@@ -158,8 +163,13 @@ function crit:updateOutput(input, target)
     self.total_style_loss = self.total_style_loss + style_loss_layer.loss
     table.insert(self.style_losses, style_loss_layer.loss)
   end
+
+  for i, depth_loss_layer in ipairs(self.depth_loss_layers) do
+    self.total_depth_loss = self.total_depth_loss + depth_loss_layer.loss
+    table.insert(self.depth_losses, depth_loss_layer.loss)
+  end
   
-  self.output = self.total_style_loss + self.total_content_loss
+  self.output = self.total_style_loss + self.total_content_loss + self.total_depth_loss  -- we need to modify this
   return self.output
 end
 
