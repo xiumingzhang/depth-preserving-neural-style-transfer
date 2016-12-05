@@ -30,6 +30,7 @@ cmd:option('-resume_from_checkpoint', '')
 -- Generic loss function options
 cmd:option('-pixel_loss_type', 'L2', 'L2|L1|SmoothL1')
 cmd:option('-pixel_loss_weight', 0.0)
+
 cmd:option('-percep_loss_weight', 1.0)
 cmd:option('-tv_strength', 1e-6)
 
@@ -37,7 +38,7 @@ cmd:option('-tv_strength', 1e-6)
 cmd:option('-content_weights', '1.0')
 cmd:option('-content_layers', '16')
 cmd:option('-loss_network', 'models/vgg16.t7')
-
+cmd:option('-depth_network', 'models/vgg16.t7')
 -- Options for style reconstruction loss
 cmd:option('-style_image', 'images/styles/candy.jpg')
 cmd:option('-style_image_size', 256)
@@ -45,6 +46,11 @@ cmd:option('-style_weights', '5.0')
 cmd:option('-style_layers', '4,9,16,23')
 cmd:option('-style_target_type', 'gram', 'gram|mean')
 
+cmd:option('-depth_image', 'images/styles/candy.jpg') -- default values might need modification
+cmd:option('-depth_image_size', 256)
+cmd:option('-depth_weights', '5.0')
+cmd:option('-depth_layers', '4,9,16,23')
+cmd:option('-depth_target_type', 'gram', 'gram|mean')
 -- Upsampling options
 cmd:option('-upsample_factor', 4)
 
