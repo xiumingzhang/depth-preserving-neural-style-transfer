@@ -1,116 +1,136 @@
 require 'torch'
 require 'nn'
+local layer_utils = require 'fast_neural_style.layer_utils'
+local crit, parent = torch.class('nn.DepthCriterion', 'nn.Criterion')
 
-require 'fast_neural_style.GramMatrix'
-require 'path'
 
-paths.dofile('../relative-depth/models/hourglass3.lua')
--- Depth Loss NN goes here
-
-function DepthLoss:__init(strength, loss_type)
-    self.strength = strength or 1.0
-    self.loss = 0
-    self.target = torch.Tensor()
-    
-    self.mode = 'none'
-    loss_type = loss_type or 'L2'
-    if loss_type == 'L2' then
-      self.crit = nn.MSECriterion()
-    elseif loss_type == 'SmoothL1' then
-      self.crit = nn.SmoothL1Criterion()
-    else
-      error(string.format('Invalid loss_type "%s"', loss_type))
-    end 
-    
-    self.g_model = get_model()
-    self.g_model.period = 1
-    self.g_model = g_model:cuda()
-
+--[[
+Input: args is a table with the following keys:
+- cnn: A network giving the base CNN.
+- content_layers: An array of layer strings
+- content_weights: A list of the same length as content_layers
+- style_layers: An array of layers strings
+- style_weights: A list of the same length as style_layers
+- agg_type: What type of spatial aggregaton to use for style loss;
+  "mean" or "gram"
+- deepdream_layers: Array of layer strings
+- deepdream_weights: List of the same length as deepdream_layers
+- loss_type: Either "L2", or "SmoothL1"
+--]]
+function crit:__init(args)
+  
+  self.net = args.cnn
+  self.net:evaluate()
+  
+  layer_utils.trim_network(self.net)
+  self.grad_net_output = torch.Tensor()
 end
 
-function DepthLoss:updateOutput(input)
-  -- todo: give train_loader inputs
-  network_input_height = 240
-  network_input_width = 320
-  _batch_input_cpu = torch.Tensor(1,3,network_input_height,network_input_width)
-
-
-  n_thresh = 140;
-  thresh = torch.Tensor(n_thresh);
-  for i = 1, n_thresh do
-      thresh[i] = 0.1 + i * 0.01;
+--[[
+target: Tensor of shape (1, 3, H, W) giving pixels for style target image
+--]]
+function crit:setStyleTarget(target)
+  for i, content_loss_layer in ipairs(self.content_loss_layers) do
+    content_loss_layer:setMode('none')
   end
-  local img = input -- make sure input is an image
-  local img_original_height = img:size(2)
-  local img_original_width = img:size(3)
-  _batch_input_cpu[{1,{}}]:copy( crop_resize_input(img) )
-  g_model:evaluate() -- from test_model_on_NYU.lua
-  local _single_data = {};
-  _single_data[1] = data_handle[i]
-  -- forward
-  local batch_output = model:forward(_batch_input_cpu:cuda());  
-  cutorch.synchronize()
-  local temp = batch_output
-  if torch.type(batch_output) == 'table' then
-        batch_output = batch_output[1]
+  for i, style_loss_layer in ipairs(self.style_loss_layers) do
+    style_loss_layer:setMode('capture')
   end
-  local original_size_output = torch.Tensor(1,1,img_original_height, img_original_width)
-  --image.scale(src, width, height, [mode])    Scale it to the original size!
-  original_size_output[{1,1,{}}]:copy( inpaint_pad_output_our(batch_output, img_original_width, img_original_height) ) 
-        
-        -- evaluate on the original size!
-        _evaluate_correctness_our(original_size_output, _single_data[1], WKDR[{i,{}}], WKDR_eq[{i,{}}], WKDR_neq[{i,{}}]);
-
-
-        local gtz_h5_handle = hdf5.open(paths.dirname(data_handle[i].img_filename) .. '/' .. i ..'_depth.h5', 'r')
-        local gtz = gtz_h5_handle:read('/depth'):all()
-        gtz_h5_handle:close()
-        assert(gtz:size(1) == 480)
-        assert(gtz:size(2) == 640)
-        
-        -- transform the output depth with training mean and std
-        transformed_weifeng_z_orig_size = normalize_output_depth_with_NYU_mean_std( original_size_output[{1,1,{}}] )
-
-        -- evaluate the data at the cropped area
-        local metric_test_crop = 16
-        transformed_weifeng_z_orig_size = transformed_weifeng_z_orig_size:sub(metric_test_crop,img_original_height-metric_test_crop,metric_test_crop,img_original_width-metric_test_crop)
-        gtz = gtz:sub(metric_test_crop,img_original_height-metric_test_crop,metric_test_crop,img_original_width-metric_test_crop)
-        
-        -- metric error
-        fmse[i], fmselog[i], flsi[i], fabsrel[i], fsqrrel[i] = metric_error(gtz, transformed_weifeng_z_orig_size)
-        local local_image = torch.Tensor(1,img_original_height,img_original_width)
-        local local_image2 = torch.Tensor(3,img_original_height,img_original_width)
-        local output_image = torch.Tensor(3, img_original_height,img_original_width * 2)
-
-
-        local_image:copy(original_size_output:double())
-        local_image = local_image:add( - torch.min(local_image) )
-        local_image = local_image:div( torch.max(local_image:sub(1,-1, 20, img_original_height - 20, 20, img_original_width - 20)) )
-        
-
-        output_image[{1,{1,img_original_height},{img_original_width + 1,img_original_width * 2}}]:copy(local_image)
-        output_image[{2,{1,img_original_height},{img_original_width + 1,img_original_width * 2}}]:copy(local_image)
-        output_image[{3,{1,img_original_height},{img_original_width + 1,img_original_width * 2}}]:copy(local_image)
-
-
-        local_image2:copy(image.load(data_handle[i].img_filename)) 
-
-        output_image[{{1},{1,img_original_height},{1,img_original_width}}]:copy(local_image2[{1,{}}])
-        output_image[{{2},{1,img_original_height},{1,img_original_width}}]:copy(local_image2[{2,{}}])
-        output_image[{{3},{1,img_original_height},{1,img_original_width}}]:copy(local_image2[{3,{}}])
-        -- output_image -- not sure if we need to output an image
-        -- TODO: then we need to compute the per-pixel distance.
-        -- and return this distance
-        
+  self.net:forward(target)
 end
 
-function DepthLoss:updateGradInput(input, gradOutput)
--- TODO provide gradient
-end
 
-function DepthLoss:setMode(mode)
-  if mode ~= 'capture' and mode ~= 'loss' and mode ~= 'none' then
-    error(string.format('Invalid mode "%s"', mode))
+--[[
+target: Tensor of shape (N, 3, H, W) giving pixels for content target images
+--]]
+function crit:setContentTarget(target)
+  for i, style_loss_layer in ipairs(self.style_loss_layers) do
+    style_loss_layer:setMode('none')
   end
-  self.mode = mode
+  for i, content_loss_layer in ipairs(self.content_loss_layers) do
+    content_loss_layer:setMode('capture')
+  end
+  self.net:forward(target)
 end
+
+
+function crit:setStyleWeight(weight)
+  for i, style_loss_layer in ipairs(self.style_loss_layers) do
+    style_loss_layer.strength = weight
+  end
+end
+
+
+function crit:setContentWeight(weight)
+  for i, content_loss_layer in ipairs(self.content_loss_layers) do
+    content_loss_layer.strength = weight
+  end
+end
+
+
+--[[
+Inputs:
+- input: Tensor of shape (N, 3, H, W) giving pixels for generated images
+- target: Table with the following keys:
+  - content_target: Tensor of shape (N, 3, H, W)
+  - style_target: Tensor of shape (1, 3, H, W)
+--]]
+function crit:updateOutput(input, target)
+  if target.content_target then
+    self:setContentTarget(target.content_target)
+  end
+  if target.style_target then
+    self.setStyleTarget(target.style_target)
+  end
+  -- TODO: do we need to set depth target here?
+
+
+  -- Make sure to set all content and style loss layers to loss mode before
+  -- running the image forward.
+  for i, content_loss_layer in ipairs(self.content_loss_layers) do
+    content_loss_layer:setMode('loss')
+  end
+  for i, style_loss_layer in ipairs(self.style_loss_layers) do
+    style_loss_layer:setMode('loss')
+  end
+  --[[
+  for i, depth_loss_layer in ipairs(self.depth_loss_layers) do
+    depth_loss_layer:setMode('loss')
+  end --]]
+
+  local output = self.net:forward(input)
+
+  -- Set up a tensor of zeros to pass as gradient to net in backward pass
+  self.grad_net_output:resizeAs(output):zero()
+
+  -- Go through and add up losses
+  self.total_content_loss = 0
+  self.content_losses = {}
+  self.total_style_loss = 0
+  self.style_losses = {}
+  --[[self.total_depth_loss = 0
+  self.depth_losses = {} --]]
+  for i, content_loss_layer in ipairs(self.content_loss_layers) do
+    self.total_content_loss = self.total_content_loss + content_loss_layer.loss
+    table.insert(self.content_losses, content_loss_layer.loss)
+  end
+  for i, style_loss_layer in ipairs(self.style_loss_layers) do
+    self.total_style_loss = self.total_style_loss + style_loss_layer.loss
+    table.insert(self.style_losses, style_loss_layer.loss)
+  end
+  --[[
+  for i, depth_loss_layer in ipairs(self.depth_loss_layers) do
+    self.total_depth_loss = self.total_depth_loss + depth_loss_layer.loss
+    table.insert(self.depth_losses, depth_loss_layer.loss)
+  end--]]
+  
+  self.output = self.total_style_loss + self.total_content_loss --+ self.total_depth_loss  -- we need to modify this
+  return self.output
+end
+
+
+function crit:updateGradInput(input, target)
+  self.gradInput = self.net:updateGradInput(input, self.grad_net_output)
+  return self.gradInput
+end
+

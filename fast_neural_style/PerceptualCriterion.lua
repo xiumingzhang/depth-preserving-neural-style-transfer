@@ -28,14 +28,12 @@ function crit:__init(args)
   args.content_layers = args.content_layers or {}
   args.style_layers = args.style_layers or {}
   args.deepdream_layers = args.deepdream_layers or {}
-  args.depth_layers = args.depth_layers or {}
   
   self.net = args.cnn
   self.net:evaluate()
   self.content_loss_layers = {}
   self.style_loss_layers = {}
   self.deepdream_loss_layers = {}
-  self.depth_loss_layers = {}
 
   -- Set up content loss layers
   for i, layer_string in ipairs(args.content_layers) do
