@@ -205,7 +205,24 @@ cmd:option('-backend', 'cuda', 'cuda|opencl')
       end
     end
 
-    local loss = pixel_loss + percep_loss
+    -- Compute Depth loss and gradient
+
+    local depth_loss = 0
+    if depth_crit then
+      local target = {content_target=y}
+      depth_loss = depth_crit:forward(out, target) -- may need to edit target
+      depth_loss = depth_loss * opt.percep_loss_weight
+      local grad_out_depth = depth_crit:backward(out, target)
+      if grad_out then
+        grad_out:add(opt.depth_loss_weight, grad_out_depth)
+      else
+        grad_out_depth:mul(opt.depth_loss_weight)
+        grad_out = grad_out_depth
+      end
+    end
+
+
+    local loss = pixel_loss + percep_loss + depth_loss
 
     -- Run model backward
     model:backward(x, grad_out)

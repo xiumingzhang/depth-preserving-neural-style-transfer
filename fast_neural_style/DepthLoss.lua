@@ -87,10 +87,11 @@ function DepthLoss:updateOutput(input)
         -- output_image -- not sure if we need to output an image
         -- TODO: then we need to compute the per-pixel distance.
         -- and return this distance
+        
 end
 
 function DepthLoss:updateGradInput(input, gradOutput)
-
+-- TODO provide gradient
 end
 
 function DepthLoss:setMode(mode)
