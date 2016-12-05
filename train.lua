@@ -4,6 +4,7 @@ require 'image'
 
 require 'fast_neural_style.DataLoader'
 require 'fast_neural_style.PerceptualCriterion'
+require 'fast_neural_style.DepthLoss'
 
 local utils = require 'fast_neural_style.utils'
 local preprocess = require 'fast_neural_style.preprocess'
