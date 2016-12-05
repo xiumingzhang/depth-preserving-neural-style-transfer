@@ -136,6 +136,24 @@ cmd:option('-backend', 'cuda', 'cuda|opencl')
     end
   end
 
+  local depth_crit
+  if opt.depth_loss_weight > 0 then
+    local loss_net = torch.load(opt.depth_network) -- the model for depth_loss
+    local crit_args = {
+      cnn = loss_net,
+    }
+    depth_crit = nn.DepthCriterion(crit_args):type(dtype)
+
+    if opt.task == 'style' then  -- TODO: provide input for depth network
+      -- Load the style image and set it
+      local style_image = image.load(opt.style_image, 3, 'float')
+      style_image = image.scale(style_image, opt.style_image_size)
+      local H, W = style_image:size(2), style_image:size(3)
+      style_image = preprocess.preprocess(style_image:view(1, 3, H, W))
+      depth_crit:setStyleTarget(style_image:type(dtype))
+    end
+  end
+
   local loader = DataLoader(opt)
   local params, grad_params = model:getParameters()
 
