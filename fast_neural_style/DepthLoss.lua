@@ -40,7 +40,7 @@ function DepthLoss:updateOutput(input)
   for i = 1, n_thresh do
       thresh[i] = 0.1 + i * 0.01;
   end
-  local img = input -- make sure input is an image
+  local img = input -- make sure input is an image: Input should be "Tensor of shape (N, 3, H, W) giving pixels for generated images", according to the comments of function crit:updateOutput(input, target) in PerceptualCriterion.lua
   local img_original_height = img:size(2)
   local img_original_width = img:size(3)
   _batch_input_cpu[{1,{}}]:copy( crop_resize_input(img) )
