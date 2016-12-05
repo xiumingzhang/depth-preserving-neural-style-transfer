@@ -7,7 +7,21 @@ require 'path'
 paths.dofile('../relative-depth/models/hourglass3.lua')
 -- Depth Loss NN goes here
 
-function DepthLoss:__init(strength, loss_type, agg_type)
+function DepthLoss:__init(strength, loss_type)
+    self.strength = strength or 1.0
+    self.loss = 0
+    self.target = torch.Tensor()
+    
+    self.mode = 'none'
+    loss_type = loss_type or 'L2'
+    if loss_type == 'L2' then
+      self.crit = nn.MSECriterion()
+    elseif loss_type == 'SmoothL1' then
+      self.crit = nn.SmoothL1Criterion()
+    else
+      error(string.format('Invalid loss_type "%s"', loss_type))
+    end 
+    
     self.g_model = get_model()
     self.g_model.period = 1
     self.g_model = g_model:cuda()
