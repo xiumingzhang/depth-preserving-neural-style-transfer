@@ -34,7 +34,7 @@ function crit:__init(args)
     table.insert(self.depth_loss_layers, depth_loss_layer)
   end
   
-  layer_utils.trim_network(self.net)
+  -- layer_utils.trim_network(self.net)
   self.grad_net_output = torch.Tensor()
 end
 
