@@ -1,7 +1,7 @@
 require 'torch'
 require 'nn'
 
-local ContentLoss, parent = torch.class('nn.ContentLoss', 'nn.Module')
+local DepthLoss, parent = torch.class('nn.ContentLoss', 'nn.Module')
 
 
 --[[
@@ -18,7 +18,7 @@ behave as follows:
   add this value to the upstream gradOutput to produce gradInput.
 --]]
 
-function ContentLoss:__init(strength, loss_type)
+function DepthLoss:__init(strength, loss_type)
   parent.__init(self)
   self.strength = strength or 1.0
   self.loss = 0
@@ -36,7 +36,7 @@ function ContentLoss:__init(strength, loss_type)
 end
 
 
-function ContentLoss:updateOutput(input)
+function DepthLoss:updateOutput(input)
   if self.mode == 'capture' then
     self.target:resizeAs(input):copy(input)
   elseif self.mode == 'loss' then
@@ -47,7 +47,7 @@ function ContentLoss:updateOutput(input)
 end
 
 
-function ContentLoss:updateGradInput(input, gradOutput)
+function DepthLoss:updateGradInput(input, gradOutput)
   if self.mode == 'capture' or self.mode == 'none' then
     self.gradInput = gradOutput
   elseif self.mode == 'loss' then
@@ -59,7 +59,7 @@ function ContentLoss:updateGradInput(input, gradOutput)
 end
 
 
-function ContentLoss:setMode(mode)
+function DepthLoss:setMode(mode)
   if mode ~= 'capture' and mode ~= 'loss' and mode ~= 'none' then
     error(string.format('Invalid mode "%s"', mode))
   end
