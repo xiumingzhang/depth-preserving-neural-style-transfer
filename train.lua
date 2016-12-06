@@ -34,7 +34,8 @@ cmd:option('-resume_from_checkpoint', '')
 cmd:option('-pixel_loss_type', 'L2', 'L2|L1|SmoothL1')
 cmd:option('-pixel_loss_weight', 0.0)
 
-cmd:option('-percep_loss_weight', 1.0)
+cmd:option('-percep_loss_weight', 0.5)
+cmd:option('-depth_loss_weight', 0.5)
 cmd:option('-tv_strength', 1e-6)
 
 -- Options for feature reconstruction loss
