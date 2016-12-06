@@ -60,9 +60,6 @@ function crit:updateOutput(input, target)
   end
   
   local output = self.net:forward(input)
-  
-  -- Compute self.loss
-  self.loss = self.crit:forward(output, self.target_output)
 
   -- Set up a tensor of zeros to pass as gradient to net in backward pass
   self.grad_net_output:resizeAs(output):zero()
