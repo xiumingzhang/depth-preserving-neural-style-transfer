@@ -1,79 +1,67 @@
 require 'torch'
 require 'nn'
-local layer_utils = require 'fast_neural_style.layer_utils'
-local crit, parent = torch.class('nn.DepthCriterion', 'nn.Criterion')
+
+local DepthLoss, parent = torch.class('nn.DepthLoss', 'nn.Module')
 
 
 --[[
-Input: args is a table with the following keys:
-- cnn: A network giving the base CNN.
-- content_layers: An array of layer strings
-- content_weights: A list of the same length as content_layers
-- style_layers: An array of layers strings
-- style_weights: A list of the same length as style_layers
-- agg_type: What type of spatial aggregaton to use for style loss;
-  "mean" or "gram"
-- deepdream_layers: Array of layer strings
-- deepdream_weights: List of the same length as deepdream_layers
-- loss_type: Either "L2", or "SmoothL1"
+Module to compute content loss in-place.
+
+The module can be in one of three modes: "none", "capture", or "loss", which
+behave as follows:
+- "none": This module does nothing; it is basically nn.Identity().
+- "capture": On the forward pass, inputs are captured as targets; otherwise it
+  is the same as an nn.Identity().
+- "loss": On the forward pass, compute the distance between input and
+  self.target, store the result in self.loss, and return input. On the backward
+  pass, add compute the gradient of self.loss with respect to the inputs, and
+  add this value to the upstream gradOutput to produce gradInput.
 --]]
-function crit:__init(args)
-  
-  self.net = args.cnn
-  self.net:evaluate()
-  
-  layer_utils.trim_network(self.net)
-  self.grad_net_output = torch.Tensor()
-  
-  self.crit = nn.MSECriterion()
-end
 
---[[
-target: Tensor of shape (1, 3, H, W) giving pixels for style target image
---]]
-function crit:setDepthTarget(target)
-  self.target_output = self.net:forward(target)
-end
+function DepthLoss:__init(strength, loss_type)
+  parent.__init(self)
+  self.strength = strength or 1.0
+  self.loss = 0
+  self.target = torch.Tensor()
 
-
-
---[[
-Inputs:
-- input: Tensor of shape (N, 3, H, W) giving pixels for generated images
-- target: Table with the following keys:
-  - content_target: Tensor of shape (N, 3, H, W)
-  - style_target: Tensor of shape (1, 3, H, W)
---]]
-function crit:updateOutput(input, target)
-  if target.content_target then
-    self:setDepthTarget(target.content_target)
+  self.mode = 'none'
+  loss_type = loss_type or 'L2'
+  if loss_type == 'L2' then
+    self.crit = nn.MSECriterion()
+  elseif loss_type == 'SmoothL1' then
+    self.crit = nn.SmoothL1Criterion()
+  else
+    error(string.format('Invalid loss_type "%s"', loss_type))
   end
-  
-  local output = self.net:forward(input)
-  
-  -- Compute self.loss
-  self.loss = self.crit:forward(output, self.target_output)
+end
 
-  -- Set up a tensor of zeros to pass as gradient to net in backward pass
-  self.grad_net_output:resizeAs(output):zero()
-  
-  self.output = self.loss
+
+function DepthLoss:updateOutput(input)
+  if self.mode == 'capture' then
+    self.target:resizeAs(input):copy(input)
+  elseif self.mode == 'loss' then
+    self.loss = self.strength * self.crit:forward(input, self.target)
+  end
+  self.output = input
   return self.output
 end
 
 
-function crit:updateGradInput(input, target)
-  self.gradInput = self.crit:backward(input, self.target)
-  
-  self.gradInput = self.net:updateGradInput(input, self.grad_net_output)
-  return self.gradInput
-  
-    if self.mode == 'capture' or self.mode == 'none' then
-      self.gradInput = gradOutput
-    elseif self.mode == 'loss' then
+function DepthLoss:updateGradInput(input, gradOutput)
+  if self.mode == 'capture' or self.mode == 'none' then
+    self.gradInput = gradOutput
+  elseif self.mode == 'loss' then
     self.gradInput = self.crit:backward(input, self.target)
     self.gradInput:mul(self.strength)
     self.gradInput:add(gradOutput)
   end
   return self.gradInput
+end
+
+
+function DepthLoss:setMode(mode)
+  if mode ~= 'capture' and mode ~= 'loss' and mode ~= 'none' then
+    error(string.format('Invalid mode "%s"', mode))
+  end
+  self.mode = mode
 end
