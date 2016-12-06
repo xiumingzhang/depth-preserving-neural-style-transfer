@@ -23,13 +23,13 @@ function crit:__init(args)
   
   self.net = args.cnn
   self.net:evaluate()
-
+  self.depth_loss_layers = {}
   
-  for i, layer_string in ipairs(args.style_layers) do
+  for i, layer_string in ipairs(args.depth_layers) do
     local weight = args.depth_weights[i]
     local depth_loss_layer = nn.DepthLoss(weight, args.loss_type, args.agg_type)
     layer_utils.insert_after(self.net, layer_string, depth_loss_layer)
-    table.insert(self.style_loss_layers, depth_loss_layer)
+    table.insert(self.depth_loss_layers, depth_loss_layer)
   end
   
   layer_utils.trim_network(self.net)
@@ -40,7 +40,7 @@ end
 target: Tensor of shape (1, 3, H, W) giving pixels for style target image
 --]]
 function crit:setDepthTarget(target)
-  self.target_output = self.net:forward(target)
+  self.net:forward(target)
 end
 
 
@@ -65,7 +65,15 @@ function crit:updateOutput(input, target)
   -- Set up a tensor of zeros to pass as gradient to net in backward pass
   self.grad_net_output:resizeAs(output):zero()
   
-  self.output = self.loss
+  self.total_depth_loss = 0
+  self.depth_losses = {}
+  
+  for i, depth_loss_layer in ipairs(self.depth_loss_layers) do
+    self.total_depth_loss = self.total_depth_loss + depth_loss_layer.loss
+    table.insert(self.depth_losses, depth_loss_layer.loss)
+  end
+  
+  self.output = self.total_depth_loss
   return self.output
 end
 
@@ -73,4 +81,3 @@ end
 function crit:updateGradInput(input, target)
   self.gradInput = self.net:updateGradInput(input, self.grad_net_output)
   return self.gradInput
-end
