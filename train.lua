@@ -50,7 +50,7 @@ cmd:option('-style_layers', '4,9,16,23')
 cmd:option('-style_target_type', 'gram', 'gram|mean')
 
 cmd:option('-depth_network', 'relative-depth/results/hourglass3/AMT_from_205315_1e-4_release/Best_model_period2.t7')
-cmd:option('-depth_layers', '5,')
+cmd:option('-depth_layers', '5')
 cmd:option('-depth_weights', '5.0')
 
 -- Upsampling options
@@ -84,6 +84,8 @@ cmd:option('-backend', 'cuda', 'cuda|opencl')
     utils.parse_layers(opt.content_layers, opt.content_weights)
   opt.style_layers, opt.style_weights =
     utils.parse_layers(opt.style_layers, opt.style_weights)
+  opt.depth_layers, opt.depth_weights =
+    utils.parse_layers(opt.depth_layers, opt.depth_weights)
 
   -- Figure out preprocessing
   if not preprocess[opt.preprocessing] then
