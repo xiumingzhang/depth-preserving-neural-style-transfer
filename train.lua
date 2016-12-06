@@ -1,6 +1,9 @@
 require 'torch'
 require 'optim'
 require 'image'
+require 'nn'
+require 'cunn'
+require 'cudnn'
 
 require 'fast_neural_style.DataLoader'
 require 'fast_neural_style.PerceptualCriterion'
@@ -46,7 +49,7 @@ cmd:option('-style_layers', '4,9,16,23')
 cmd:option('-style_target_type', 'gram', 'gram|mean')
 
 cmd:option('-depth_network', 'results/hourglass3/AMT_from_205315_1e-4_release/Best_model_period2.t7')
-cmd:option('-depth_layers', '4,9,16,23')
+cmd:option('-depth_layers', '5')
 cmd:option('-depth_weights', '5.0')
 
 -- Upsampling options
