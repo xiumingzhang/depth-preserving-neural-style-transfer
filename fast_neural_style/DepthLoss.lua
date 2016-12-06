@@ -29,13 +29,7 @@ end
 --[[
 target: Tensor of shape (1, 3, H, W) giving pixels for style target image
 --]]
-function crit:setStyleTarget(target)
-  for i, content_loss_layer in ipairs(self.content_loss_layers) do
-    content_loss_layer:setMode('none')
-  end
-  for i, style_loss_layer in ipairs(self.style_loss_layers) do
-    style_loss_layer:setMode('capture')
-  end
+function crit:setDepthTarget(target)
   self.net:forward(target)
 end
 
