@@ -264,6 +264,9 @@ cmd:option('-backend', 'cuda', 'cuda|opencl')
     for i, k in ipairs(opt.content_layers) do
       style_loss_history[string.format('content-%d', k)] = {}
     end
+    for i, k in ipairs(opt.depth_layers) do
+      style_loss_history[string.format('depth-%d', k)] = {}
+    end
   end
 
   local style_weight = opt.style_weight
@@ -282,6 +285,10 @@ cmd:option('-backend', 'cuda', 'cuda|opencl')
       for i, k in ipairs(opt.content_layers) do
         table.insert(style_loss_history[string.format('content-%d', k)],
           percep_crit.content_losses[i])
+      end
+      for i, k in ipairs(opt.depth_layers) do
+        table.insert(style_loss_history[string.format('depth-%d', k)],
+          depth_crit.depth_losses[i])
       end
     end
 
@@ -310,7 +317,12 @@ cmd:option('-backend', 'cuda', 'cuda|opencl')
           percep_loss = percep_crit:forward(out, {content_target=y})
           percep_loss = opt.percep_loss_weight * percep_loss
         end
-        val_loss = val_loss + pixel_loss + percep_loss
+        local depth_loss = 0
+        if depth_crit then
+          depth_loss = depth_crit:forward(out, {content_target=y})
+          depth_loss = opt.depth_loss_weight * depth_loss
+        end
+        val_loss = val_loss + pixel_loss + percep_loss + depth_loss
       end
       val_loss = val_loss / val_batches
       print(string.format('val loss = %f', val_loss))
