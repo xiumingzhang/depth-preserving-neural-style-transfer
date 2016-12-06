@@ -1,6 +1,8 @@
 require 'torch'
 require 'nn'
+
 local layer_utils = require 'fast_neural_style.layer_utils'
+
 local crit, parent = torch.class('nn.DepthCriterion', 'nn.Criterion')
 
 
@@ -60,7 +62,7 @@ function crit:updateOutput(input, target)
   local output = self.net:forward(input)
   
   -- Compute self.loss
-  self.loss = self.crit:forward(output, self.target_output)
+  self.loss = self.crit:forward(output, self.target_output) -- ???
 
   -- Set up a tensor of zeros to pass as gradient to net in backward pass
   self.grad_net_output:resizeAs(output):zero()
@@ -79,5 +81,6 @@ end
 
 
 function crit:updateGradInput(input, target)
-  self.gradInput = self.net:updateGradInput(input, self.grad_net_output)
+  self.gradInput = self.net:updateGradInput(input, self.grad_net_output) -- ???
   return self.gradInput
+end

@@ -7,7 +7,6 @@ require 'fast_neural_style.DeepDreamLoss'
 
 local layer_utils = require 'fast_neural_style.layer_utils'
 
-
 local crit, parent = torch.class('nn.PerceptualCriterion', 'nn.Criterion')
 
 
@@ -50,14 +49,6 @@ function crit:__init(args)
     layer_utils.insert_after(self.net, layer_string, style_loss_layer)
     table.insert(self.style_loss_layers, style_loss_layer)
   end
-
-  --[[Set up Depth Mapping layers
-  for i, layer_string in ipairs(args.depth_layers) do
-    local weight = args.depth_weights[i]
-    local depth_loss_layer = nn.DepthLoss(weight) -- need to specify the arguments here
-    layer_utils.insert_after(self.net, layer_string, depth_loss_layer)
-    table.insert(self.depth_loss_layers, depth_loss_layer)
-  end --]]
 
   -- Set up DeepDream layers
   for i, layer_string in ipairs(args.deepdream_layers) do
@@ -129,7 +120,6 @@ function crit:updateOutput(input, target)
   if target.style_target then
     self.setStyleTarget(target.style_target)
   end
-  -- TODO: do we need to set depth target here?
 
 
   -- Make sure to set all content and style loss layers to loss mode before
@@ -140,10 +130,6 @@ function crit:updateOutput(input, target)
   for i, style_loss_layer in ipairs(self.style_loss_layers) do
     style_loss_layer:setMode('loss')
   end
-  --[[
-  for i, depth_loss_layer in ipairs(self.depth_loss_layers) do
-    depth_loss_layer:setMode('loss')
-  end --]]
 
   local output = self.net:forward(input)
 
@@ -155,8 +141,7 @@ function crit:updateOutput(input, target)
   self.content_losses = {}
   self.total_style_loss = 0
   self.style_losses = {}
-  --[[self.total_depth_loss = 0
-  self.depth_losses = {} --]]
+
   for i, content_loss_layer in ipairs(self.content_loss_layers) do
     self.total_content_loss = self.total_content_loss + content_loss_layer.loss
     table.insert(self.content_losses, content_loss_layer.loss)
@@ -165,13 +150,8 @@ function crit:updateOutput(input, target)
     self.total_style_loss = self.total_style_loss + style_loss_layer.loss
     table.insert(self.style_losses, style_loss_layer.loss)
   end
-  --[[
-  for i, depth_loss_layer in ipairs(self.depth_loss_layers) do
-    self.total_depth_loss = self.total_depth_loss + depth_loss_layer.loss
-    table.insert(self.depth_losses, depth_loss_layer.loss)
-  end--]]
   
-  self.output = self.total_style_loss + self.total_content_loss --+ self.total_depth_loss  -- we need to modify this
+  self.output = self.total_style_loss + self.total_content_loss
   return self.output
 end
 
