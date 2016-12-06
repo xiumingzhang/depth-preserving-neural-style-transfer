@@ -149,7 +149,7 @@ cmd:option('-backend', 'cuda', 'cuda|opencl')
     local loss_net = torch.load(opt.depth_network) -- the model for depth_loss
     local crit_args = {
       cnn = loss_net,
-      depth_layers = opt.depth_layers
+      depth_layers = opt.depth_layers,
       depth_weights = opt.depth_weights
     }
     depth_crit = nn.DepthCriterion(crit_args):type(dtype)
