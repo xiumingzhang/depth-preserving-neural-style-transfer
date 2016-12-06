@@ -71,17 +71,6 @@ end
 
 
 function crit:updateGradInput(input, target)
-  self.gradInput = self.crit:backward(input, self.target)
-  
   self.gradInput = self.net:updateGradInput(input, self.grad_net_output)
-  return self.gradInput
-  
-    if self.mode == 'capture' or self.mode == 'none' then
-      self.gradInput = gradOutput
-    elseif self.mode == 'loss' then
-    self.gradInput = self.crit:backward(input, self.target)
-    self.gradInput:mul(self.strength)
-    self.gradInput:add(gradOutput)
-  end
   return self.gradInput
 end
