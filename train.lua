@@ -46,11 +46,9 @@ cmd:option('-style_weights', '5.0')
 cmd:option('-style_layers', '4,9,16,23')
 cmd:option('-style_target_type', 'gram', 'gram|mean')
 
-cmd:option('-depth_image', 'images/styles/candy.jpg') -- default values might need modification
-cmd:option('-depth_image_size', 256)
 cmd:option('-depth_weights', '5.0')
 cmd:option('-depth_layers', '4,9,16,23')
-cmd:option('-depth_target_type', 'gram', 'gram|mean')
+
 -- Upsampling options
 cmd:option('-upsample_factor', 4)
 
