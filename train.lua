@@ -146,17 +146,10 @@ cmd:option('-backend', 'cuda', 'cuda|opencl')
     local loss_net = torch.load(opt.depth_network) -- the model for depth_loss
     local crit_args = {
       cnn = loss_net,
+      depth_layers = opt.depth_layers
+      depth_weights = opt.depth_weights
     }
     depth_crit = nn.DepthCriterion(crit_args):type(dtype)
-
-    if opt.task == 'style' then  -- TODO: provide input for depth network
-      -- Load the style image and set it
-      local depth_image = image.load(opt.depth_image, 3, 'float')
-      style_image = image.scale(depth_image, opt.depth_image_size)
-      local H, W = depth_image:size(2), depth_image:size(3)
-      depth_image = preprocess.preprocess(depth_image:view(1, 3, H, W))
-      depth_crit:setDepthTarget(depth_image:type(dtype))
-    end
   end
 
   local loader = DataLoader(opt)
