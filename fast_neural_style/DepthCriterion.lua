@@ -19,13 +19,21 @@ Input: args is a table with the following keys:
 --]]
 function crit:__init(args)
   
+  args.depth_layers = args.depth_layers or {}
+  
   self.net = args.cnn
   self.net:evaluate()
+
+  
+  for i, layer_string in ipairs(args.style_layers) do
+    local weight = args.depth_weights[i]
+    local depth_loss_layer = nn.DepthLoss(weight, args.loss_type, args.agg_type)
+    layer_utils.insert_after(self.net, layer_string, depth_loss_layer)
+    table.insert(self.style_loss_layers, depth_loss_layer)
+  end
   
   layer_utils.trim_network(self.net)
   self.grad_net_output = torch.Tensor()
-  
-  self.crit = nn.MSECriterion()
 end
 
 --[[
