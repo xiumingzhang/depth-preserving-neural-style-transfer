@@ -1,0 +1,20 @@
+\begin{thebibliography}{1}\itemsep=-1pt
+
+\bibitem{gatys2015texture}
+L.~Gatys, A.~S. Ecker, and M.~Bethge.
+\newblock Texture synthesis using convolutional neural networks.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  262--270, 2015.
+
+\bibitem{gatys2016image}
+L.~A. Gatys, A.~S. Ecker, and M.~Bethge.
+\newblock Image style transfer using convolutional neural networks.
+\newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition}, pages 2414--2423, 2016.
+
+\bibitem{simonyan2014very}
+K.~Simonyan and A.~Zisserman.
+\newblock Very deep convolutional networks for large-scale image recognition.
+\newblock {\em arXiv preprint arXiv:1409.1556}, 2014.
+
+\end{thebibliography}
