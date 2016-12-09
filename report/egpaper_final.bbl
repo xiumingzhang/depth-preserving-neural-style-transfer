@@ -23,6 +23,11 @@ L.~A. Gatys, A.~S. Ecker, and M.~Bethge.
 \newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
   Pattern Recognition}, pages 2414--2423, 2016.
 
+\bibitem{johnson2016perceptual}
+J.~Johnson, A.~Alahi, and L.~Fei-Fei.
+\newblock Perceptual losses for real-time style transfer and super-resolution.
+\newblock {\em arXiv preprint arXiv:1603.08155}, 2016.
+
 \bibitem{simonyan2014very}
 K.~Simonyan and A.~Zisserman.
 \newblock Very deep convolutional networks for large-scale image recognition.

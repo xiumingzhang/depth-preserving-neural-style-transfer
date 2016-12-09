@@ -10,6 +10,8 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{caption}
+\usepackage{subcaption}
 
 % Include other packages here, before hyperref.
 
@@ -25,11 +27,10 @@
 
 % Pages are numbered in submission mode, and unnumbered in camera-ready
 %\ifcvprfinal\pagestyle{empty}\fi
-\setcounter{page}{4321}
-\begin{document}
+\setcounter{page}{1}
 
 %%%%%%%%% TITLE
-\title{ Depth-Preserving Style Transfer}
+\title{Depth-Preserving Style Transfer}
 
 \author{Xiuming Zhang\\
 Massachusetts Institute of Technology\\
@@ -37,6 +38,16 @@ Massachusetts Institute of Technology\\
 \\
 Teammates: Ruizhi Liao \& Yu Xia
 }
+
+\begin{document}
+
+\makeatletter
+\let\@oldmaketitle\@maketitle% Store \@maketitle
+\renewcommand{\@maketitle}{\@oldmaketitle% Update \@maketitle to insert...
+\includegraphics[width=\linewidth]{results/teaser.pdf}
+When the input scene exhibits large variations in depth (A), the current state-of-the-art method tends to destroy the layering and lose the depth variations, producing a ``flat'' stylization result (B). This paper aims to address this issue by incorporating depth preservation into the loss function such that variations in depth and layering are preserved in the stylized image (C). 
+\bigskip}
+\makeatother
 
 \maketitle
 %\thispagestyle{empty}
@@ -56,13 +67,15 @@ convolutional neural network (CNN)
 
 \section{Related Work}
 
-\subsection{Image Style Transfer}
+The core of our method is incorporating depth preservation losses into the image transformation neural network. Therefore, we review related literature on both neural network-based image style transfer and single-image depth estimation.
+
+\subsection{Image Style Transfer with Neural Networks}
 
 Style transfer can be considered as a more general form of texture transfer, where one transfers texture from one image (style image) to another image (content image). Ideally, semantics of the content image should not be altered in this process. In texture transfer, it is usually the low-level features that are utilized, e.g., in~\cite{efros2001image}.
 
-With the recent prevalence of deep neural networks, researchers started exploring how high-level features extracted by neural networks can be utilized for the task of style transfer. For instance, Gatys \etal perform image style transfer by synthesizing a new image that matches both contents of the content image and styles of the style image~\cite{gatys2016image}. In particular, they extract content representations from the content image and style representations from the style image using the VGG network~\cite{simonyan2014very}. Since the VGG network is trained to perform object recognition and localization tasks, the layers deep down the network hierarchy capture object information (i.e., the contents) of the content image and are insensitive to the exact pixel values. Therefore, outputs from these deep layers serve as good content targets that the synthesized image tries to achieve at varying levels of resolution. As for style, they adopt a feature space built on filter responses in any layer of the network~\cite{gatys2015texture}. By design, the feature space captures texture information without global arrangement. Finally, they minimize a weighted sum of the content and style loss under a CNN framework, where forward and backward passes are iteratively performed.
+With the recent prevalence of deep neural networks, researchers started exploring how high-level features extracted by neural networks can be utilized for the task of style transfer. For instance, Gatys \etal perform image style transfer by synthesizing a new image that matches both contents of the content image and styles of the style image~\cite{gatys2016image}. In particular, they extract content representations from the content image and style representations from the style image using the VGG network~\cite{simonyan2014very}. Since the VGG network is trained to perform object recognition and localization tasks, the layers deep down the network hierarchy capture object information (i.e., the contents) of the content image and are insensitive to the exact pixel values. Therefore, outputs from these deep layers serve as good content targets that the synthesized image tries to achieve at varying levels of resolution. As for style, they adopt a feature space built on filter responses in any layer of the network~\cite{gatys2015texture}. By design, the feature space captures texture information without global arrangement. Finally, they minimize a weighted sum of the content and style loss under a CNN framework, where forward and backward passes are iteratively performed. Building upon this work, the authors recently devised a way of preserve the original colors in the content image~\cite{gatys2016preserving}. However, the high computational cost still remains as a drawback in~\cite{gatys2016image}.
 
-Building upon this work, the authors recently devised a way of preserve the original colors in the content image~\cite{gatys2016preserving}. One drawback of this optimization-based approach
+To reduce the computational burden and generate visually similar-quality results, Johnson \etal~\cite{johnson2016perceptual} train a feed-forward image transform network to approximate solutions to the optimization problem posed in~\cite{gatys2016image}. In particular, their system consists of a deep residual CNN as the image transform network and the pretrained VGG network~\cite{simonyan2014very} as the fixed loss network. For each style image, the image transform network is trained to apply this style to a content image while minimizing the style and content losses as measured by the loss network. This method produces reasonably good results with low computational cost, but tends to lose the depth variations and destroy layering in the content image as illustrated in the teaser figure.
 
 \subsection{Depth}
 
