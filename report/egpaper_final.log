@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.9.10)  9 DEC 2016 00:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.9.10)  9 DEC 2016 01:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -412,22 +412,26 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
- <./results/teaser.pdf>] (./egpaper_final.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 95.
- [2
+ <./results/teaser.pdf>] (./egpaper_final.bbl
+Underfull \hbox (badness 1859) in paragraph at lines 58--61
+\OT1/ptm/m/n/9 net-works for hu-man pose es-ti-ma-tion.  \OT1/ptm/m/it/9 arXiv 
+preprint
+ []
 
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 95.
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 99.
+ [2]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 99.
  (./egpaper_final.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 95.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 95.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 95.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 99.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 99.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 99.
  ) 
 Here is how much of TeX's memory you used:
- 7319 strings out of 493091
- 109655 string characters out of 6134964
- 198862 words of memory out of 5000000
- 10692 multiletter control sequences out of 15000+600000
+ 7335 strings out of 493091
+ 109947 string characters out of 6134964
+ 202161 words of memory out of 5000000
+ 10700 multiletter control sequences out of 15000+600000
  23203 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,9n,38p,1562b,322s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -436,10 +440,10 @@ exlive/2015/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2
 015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-
 dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts
 /type1/urw/times/utmri8a.pfb>
-Output written on egpaper_final.pdf (2 pages, 728053 bytes).
+Output written on egpaper_final.pdf (2 pages, 732706 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
- 70 compressed objects within 1 object stream
- 17 named destinations out of 1000 (max. 500000)
+ 108 PDF objects out of 1000 (max. 8388607)
+ 90 compressed objects within 1 object stream
+ 25 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
