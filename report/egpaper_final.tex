@@ -105,7 +105,7 @@ where $\mathbb E_{\{x,y\}}$ is the estimation of the expectation via the (traini
 
 \subsection{Depth Loss Function}
 
-We make use of depth loss function to quantify the amount of depth information preserved. 
+We make use of depth loss function to measure the amount of depth differences between the input image $x$ and the output image $\hat y$. Ideally, the output image should have similar depth features with that of the input. Rather than capture the per-pixel differences of the feed-forward outputs we capture the high level features from the depth estimation network. More specifically, we define the depth loss function as the 2-norm of the feature vectors.
 
 \subsection{Content Feature Loss Function}
 
