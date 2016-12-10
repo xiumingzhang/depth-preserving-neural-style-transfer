@@ -91,7 +91,7 @@ Building on~\cite{zoran2015learning}, a recent work by Chen \etal proposes an en
 \caption{Network Structure Overview}
 \label{fig:overview}
 \end{figure*}
-The overview of our network structure is shown in Figure~\ref{fig:overview}. Compared to Johnson et al. \cite{johnson2016perceptual}'s work, our structure is featured in having a depth estimation network as part of our loss function. In all, our network is composed of 3 subnets: an image transformation network, a perceptual loss network and a depth estimation network. Similar to Johnson et al., the image transformation $f_W$ is a convolutional network which produce the output image $\hat y$ given the input image $x$ by $\hat y = f_W(x)$ (where $W$ is the weights of the network).
+The overview of our network structure is shown in Figure~\ref{fig:overview}. Compared to Johnson et al. \cite{johnson2016perceptual}'s work, our structure is featured in having a depth estimation network as part of our loss function. In all, our network is composed of 3 subnets: an image transformation network $f_W$, a perceptual loss network $\phi$ and a depth estimation network $\delta$. Similar to Johnson et al., the image transformation $f_W$ is a convolutional network which produce the output image $\hat y$ given the input image $x$ by $\hat y = f_W(x)$ (where $W$ is the weights of the network).
 
 To keep track of the depth information, our loss function is composed of 2 neural networks: the perceptual loss network and the depth estimation network. As mentioned in \cite{johnson2016perceptual}, pretrained convolutional neural networks are able to extract perceptual information and encode semantics which are useful for the loss function. Similarly, a pretrained depth estimation network has already learned to estimate the depth information from the single input image. Therefore we utilize a pre-trained image classification network for the perceptual loss part and a pretrained depth estimation network for the depth loss part. Specifically, our loss function is defined as a weighted linear combination of the content loss $l_\text{content}$, the style loss $l_\text{style}$ and the depth loss $l_\text{depth}$. 
 
@@ -105,11 +105,10 @@ where $\mathbb E_{\{x,y\}}$ is the estimation of the expectation via the (traini
 
 \subsection{Depth Loss Function}
 
-We make use of depth loss function to measure the amount of depth differences between the input image $x$ and the output image $\hat y$. Ideally, the output image should have similar depth features with that of the input. Rather than capture the per-pixel differences of the feed-forward outputs we capture the high level features from the depth estimation network. More specifically, we define the depth loss function as the 2-norm of the feature vectors.
+We make use of depth loss function to measure the amount of depth differences between the input image $x$ and the output image $\hat y$. Ideally, the output image should have similar depth features with that of the input. Rather than capture the per-pixel differences of the feed-forward outputs we capture the high level features from the depth estimation network. More specifically, we define the depth loss function $l_\text{depth}$ as the 2-norm of the feature vectors (from selected layers) $l_\text{depth}(\hat y, y) = \sum_i\|\delta_i(\hat y) - \delta_i(y)\|_2^2$. The motivation for a high level depth loss function is that we want to encourage the output from $f_W$ to be similar to the content image from the depth pespective but we don't want their depth estimation to be exactly the same. There are several reasons for such a motivation: firstly, the estimations of depth from the network $\phi$ are not necessarily accurate which make it meaningless to pursue a (per-pixel) exact match on the depth estimation. Secondly, we need to allow the image transformatin network $f_W$ to perceptually transform the image which might involve changes of shapes, places and lines. Again it is not promising to propose a per-pixel loss, which reduce the chances of such transformations. Thirdly, as argued in \cite{johnson2016perceptual}, perceptual losses are more robust and stable than the per-pixel losses.
 
-\subsection{Content Feature Loss Function}
-
-\subsection{Perceptual Style Loss Function}
+\subsection{Content Feature Loss Function and Style Loss Function}
+For content feature loss function $l_\text{feat}$ and $l_\text{style}$, we briefly recall the explanation from \cite{johnson2016perceptual}.
 
 \section{Experiments}
 
