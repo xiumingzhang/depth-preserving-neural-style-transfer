@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.9.10)  9 DEC 2016 11:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.9.10)  9 DEC 2016 15:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -399,20 +399,18 @@ LaTeX Font Info:    Try loading font information for OT1+pcr on input line 54.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-<results/teaser.pdf, id=4, 955.57pt x 211.79124pt>
-File: results/teaser.pdf Graphic file (type pdf)
- <use results/teaser.pdf>
-Package pdftex.def Info: results/teaser.pdf used on input line 54.
-(pdftex.def)             Requested size: 496.85625pt x 110.12238pt.
+<results/teaser2.pdf, id=4, 947.54pt x 185.69376pt>
+File: results/teaser2.pdf Graphic file (type pdf)
+ <use results/teaser2.pdf>
+Package pdftex.def Info: results/teaser2.pdf used on input line 54.
+(pdftex.def)             Requested size: 496.85625pt x 97.37167pt.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 56.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+[1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
- <./results/teaser.pdf>] (./egpaper_final.bbl
+ <./results/teaser2.pdf>] (./egpaper_final.bbl
 Underfull \hbox (badness 1859) in paragraph at lines 58--61
 \OT1/ptm/m/n/9 net-works for hu-man pose es-ti-ma-tion.  \OT1/ptm/m/it/9 arXiv 
 preprint
@@ -429,7 +427,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 99.
  ) 
 Here is how much of TeX's memory you used:
  7335 strings out of 493091
- 109947 string characters out of 6134964
+ 109952 string characters out of 6134964
  202161 words of memory out of 5000000
  10700 multiletter control sequences out of 15000+600000
  23203 words of font info for 53 fonts, out of 8000000 for 9000
@@ -440,7 +438,7 @@ exlive/2015/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2
 015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-
 dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts
 /type1/urw/times/utmri8a.pfb>
-Output written on egpaper_final.pdf (2 pages, 732714 bytes).
+Output written on egpaper_final.pdf (2 pages, 645797 bytes).
 PDF statistics:
  108 PDF objects out of 1000 (max. 8388607)
  90 compressed objects within 1 object stream
