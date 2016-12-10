@@ -91,7 +91,11 @@ Building on~\cite{zoran2015learning}, a recent work by Chen \etal proposes an en
 \caption{Network Structure Overview}
 \label{fig:overview}
 \end{figure*}
-The overview of our network structure is shown in Figure~\ref{fig:overview}.
+The overview of our network structure is shown in Figure~\ref{fig:overview}. Compared to Johnson et al. \cite{johnson2016perceptual}'s work, our structure is featured in having a depth estimation network as part of our loss function. In all, our network is composed of 3 subnets: an image transformation network, a perceptual loss network and a depth estimation network. Similar to Johnson et al., the image transformation $f_W$ is a convolutional network which produce the output image $\hat y$ given the input image $x$ by $\hat y = f_W(x)$ (where $W$ is the weights of the network).
+
+Our loss function is composed of 2 neural networks: the perceptual loss network and the depth estimation network. As mentioned in \cite{johnson2016perceptual}, pretrained convolutional neural networks are able to extract perceptual information and encode semantics which are useful for the loss function. Similarly, a pretrained depth estimation network has already learned to estimate the depth information from the single input image. 
+
+
 \section{Experiments}
 
 \section{Discussion \& Conclusion}
