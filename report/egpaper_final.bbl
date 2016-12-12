@@ -5,6 +5,17 @@ W.~Chen, Z.~Fu, D.~Yang, and J.~Deng.
 \newblock Single-image depth perception in the wild.
 \newblock {\em arXiv preprint arXiv:1604.03901}, 2016.
 
+\bibitem{chetlur2014cudnn}
+S.~Chetlur, C.~Woolley, P.~Vandermersch, J.~Cohen, J.~Tran, B.~Catanzaro, and
+  E.~Shelhamer.
+\newblock cudnn: Efficient primitives for deep learning.
+\newblock {\em arXiv preprint arXiv:1410.0759}, 2014.
+
+\bibitem{collobert2011torch7}
+R.~Collobert, K.~Kavukcuoglu, and C.~Farabet.
+\newblock Torch7: A matlab-like environment for machine learning.
+\newblock In {\em BigLearn, NIPS Workshop}, number EPFL-CONF-192376, 2011.
+
 \bibitem{efros2001image}
 A.~A. Efros and W.~T. Freeman.
 \newblock Image quilting for texture synthesis and transfer.

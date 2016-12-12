@@ -118,7 +118,8 @@ and for style loss we use the Frobenius norm of differences of the Gram matrices
 
 \subsection{Training Details}
 
-Microsoft COCO dataset~\cite{lin2014microsoft} (contiaing around 80K images) was used for training our depth-preserving style transfer networks. Each training image was resized to $256\times256$. Maximum iterations were set to be $40000$, and a batch size of 3 was applied. These settings gave roughly 1.5 epochs over all the training data. The optimization was based on Adam~\cite{kingma2014adam} with a learning rate of $1\times10^{-3}$.
+Microsoft COCO dataset~\cite{lin2014microsoft} (contiaing around 80K images) was used for training our depth-preserving style transfer networks. Each training image was resized to $256\times256$. Maximum iterations were set to be $40000$, and a batch size of 3 was applied. These settings gave roughly 1.5 epochs over all the training data. The optimization was based on Adam~\cite{kingma2014adam} with a learning rate of $1\times10^{-3}$. No weight decay or dropout was used. The training was implemented using Torch~\cite{collobert2011torch7} and cuDNN~\cite{chetlur2014cudnn}. Each style training took around 7 hours on a single GTX Titan X GPU. As for the target losses, the content target loss is computed at VGG network layer $relu2\_2$, the style target loss is computed at VGG network layers $relu1\_2$, $relu2\_2$, $relu3\_3$ and $relu4\_3$, and the depth target loss is computed at the output layer of \cite{chen2016single}.
+
 
 \subsection{Qualitative Results}
 
