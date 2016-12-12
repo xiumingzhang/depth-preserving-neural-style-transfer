@@ -126,11 +126,16 @@ Microsoft COCO dataset~\cite{lin2014microsoft} (contiaing around 80K images) was
 
 \section{Discussion and Conlucsions}
 
-Some might argue that if the weight for the style target loss in the Johnson \etal~\cite{johnson2016perceptual} network is decreased, we could get similar results. But this is not the case. Note that the content target loss term is computed as the distance of the feature representations in the VGG network~\cite{simonyan2014very}, which was designed and trained for object recognition. The backgrounds in the content images, for instance, skies, roads, and lawns, are hard to be fully represented in those features. Also, the depth of an "object" (for example, the road in the teaser image) may change a lot in an image, and some pixel-level (or superpixel-level) loss should be included to preserve stereopsis of the transferred images. Therefore, an extra depth loss is necessitated in our problem setting.  
+Some might argue that if the weight for the style target loss in the Johnson \etal~\cite{johnson2016perceptual} network is decreased, we could get similar results. But this is not the case. Note that the content target loss term is computed as the distance of the feature representations in the VGG network~\cite{simonyan2014very}, which was designed and trained for object recognition. The backgrounds in the content images, for instance, skies, roads, and lawns, are hard to be fully represented in those features. Also, the depth of an ``object" (for example, the road in the teaser image) may change a lot in an image, and some pixel-level (or superpixel-level) loss should be included to preserve stereopsis of the transferred images. Therefore, an extra depth loss is necessitated in our problem setting.  
+
+The intuition of why this depth loss net works is that style is put onto the content images layer by layer, not equally, when including the depth loss. As we can see from the outputs of Johnson \etal~\cite{johnson2016perceptual} network, the style is transferred almost equally to different regions of the content images. This may destruct stereopsis of the transferred images. The depth loss network we employed here, however, penalizes ``equal style transfer" across the content images.  
+
+Some object textures are also preserved as a by-product, for example, the rock texture in Figure~\ref{fig:overview}
+
 
 
 {\small
-\bibliographystyle{ieee}
+\bibliographystyle{ieee}`:q!:q
 \bibliography{egbib}
 }
 
