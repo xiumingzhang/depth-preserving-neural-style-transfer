@@ -115,13 +115,17 @@ Therefore
 and for style loss we use the Frobenius norm of differences of the Gram matrices of $\hat y$ and $y_s$.
 \[ l_\text{style}(\hat y, y_s) = \sum_{i \in I_\phi} \frac{1}{N_i(\phi)}\|G^\phi_i(\hat y) - G^\phi_i(y_s)\|_F^2. \]
 \section{Experiments}
+
 \subsection{Training Details}
+
+Microsoft COCO dataset~\cite{lin2014microsoft} (contiaing around 80K images) was used for training our depth-preserving style transfer networks. Each training image was resized to $256\times256$. Maximum iterations were set to be $40000$, and a batch size of 3 was applied. These settings gave roughly 1.5 epochs over all the training data. The optimization was based on Adam~\cite{kingma2014adam} with a learning rate of $1\times10^{-3}$.
 
 \subsection{Qualitative Results}
 
 
-\section{Discussion \& Conclusion}
+\section{Discussion and Conlucsions}
 
+Some might argue that if the weight for the style target loss in the Johnson \etal~\cite{johnson2016perceptual} network is decreased, we could get similar results. But this is not the case. Note that the content target loss term is computed as the distance of the feature representations in the VGG network~\cite{simonyan2014very}, which was designed and trained for object recognition. The relative depth of objects in an image is hard to be represented by those features. For instance, ...
 
 
 {\small

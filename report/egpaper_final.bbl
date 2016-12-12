@@ -40,12 +40,24 @@ J.~Johnson, A.~Alahi, and L.~Fei-Fei.
 \newblock Perceptual losses for real-time style transfer and super-resolution.
 \newblock {\em arXiv preprint arXiv:1603.08155}, 2016.
 
+\bibitem{kingma2014adam}
+D.~Kingma and J.~Ba.
+\newblock Adam: A method for stochastic optimization.
+\newblock {\em arXiv preprint arXiv:1412.6980}, 2014.
+
 \bibitem{li2015depth}
 B.~Li, C.~Shen, Y.~Dai, A.~van~den Hengel, and M.~He.
 \newblock Depth and surface normal estimation from monocular images using
   regression on deep features and hierarchical crfs.
 \newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
   Pattern Recognition}, pages 1119--1127, 2015.
+
+\bibitem{lin2014microsoft}
+T.-Y. Lin, M.~Maire, S.~Belongie, J.~Hays, P.~Perona, D.~Ramanan,
+  P.~Doll{\'a}r, and C.~L. Zitnick.
+\newblock Microsoft coco: Common objects in context.
+\newblock In {\em European Conference on Computer Vision}, pages 740--755.
+  Springer, 2014.
 
 \bibitem{liu2015deep}
 F.~Liu, C.~Shen, and G.~Lin.

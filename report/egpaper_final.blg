@@ -1,46 +1,46 @@
-This is BibTeX, Version 0.99d (TeX Live 2015)
+This is BibTeX, Version 0.99d (TeX Live 2016)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: egpaper_final.aux
 The style file: ieee.bst
 Database file #1: egbib.bib
-You've used 14 entries,
+You've used 16 entries,
             2120 wiz_defined-function locations,
-            569 strings with 6322 characters,
-and the built_in function-call counts, 5924 in all, are:
-= -- 595
-> -- 272
-< -- 8
-+ -- 107
-- -- 92
-* -- 373
-:= -- 906
-add.period$ -- 44
-call.type$ -- 14
-change.case$ -- 88
+            578 strings with 6692 characters,
+and the built_in function-call counts, 6815 in all, are:
+= -- 682
+> -- 328
+< -- 9
++ -- 129
+- -- 112
+* -- 435
+:= -- 1051
+add.period$ -- 51
+call.type$ -- 16
+change.case$ -- 104
 chr.to.int$ -- 0
-cite$ -- 14
-duplicate$ -- 255
-empty$ -- 454
-format.name$ -- 92
-if$ -- 1303
+cite$ -- 16
+duplicate$ -- 288
+empty$ -- 512
+format.name$ -- 112
+if$ -- 1492
 int.to.chr$ -- 0
-int.to.str$ -- 14
-missing$ -- 14
-newline$ -- 73
-num.names$ -- 28
-pop$ -- 110
+int.to.str$ -- 16
+missing$ -- 16
+newline$ -- 83
+num.names$ -- 32
+pop$ -- 129
 preamble$ -- 1
-purify$ -- 74
+purify$ -- 88
 quote$ -- 0
-skip$ -- 216
+skip$ -- 242
 stack$ -- 0
-substring$ -- 386
-swap$ -- 104
-text.length$ -- 8
+substring$ -- 428
+swap$ -- 116
+text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 56
+type$ -- 64
 warning$ -- 0
-while$ -- 54
-width$ -- 16
-write$ -- 153
+while$ -- 61
+width$ -- 18
+write$ -- 175
