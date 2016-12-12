@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  12 DEC 2016 15:18
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.9.10)  11 DEC 2016 23:43
+>>>>>>> Stashed changes
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -409,7 +413,11 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+<<<<<<< Updated upstream
  [1{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+=======
+ [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+>>>>>>> Stashed changes
 
 
  <./results/teaser.pdf>] <network_structure.pdf, id=67, 766.865pt x 312.16624pt
@@ -423,12 +431,18 @@ Package pdftex.def Info: network_structure.pdf used on input line 90.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+<<<<<<< Updated upstream
 [2] [3 <./network_structure.pdf>] (./egpaper_final.bbl
 Underfull \hbox (badness 1859) in paragraph at lines 81--84
+=======
+[2] (./egpaper_final.bbl
+Underfull \hbox (badness 1859) in paragraph at lines 58--61
+>>>>>>> Stashed changes
 \OT1/ptm/m/n/9 net-works for hu-man pose es-ti-ma-tion.  \OT1/ptm/m/it/9 arXiv 
 preprint
  []
 
+<<<<<<< Updated upstream
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 142.
  [4]
@@ -465,5 +479,45 @@ PDF statistics:
  232 PDF objects out of 1000 (max. 8388607)
  197 compressed objects within 2 object streams
  36 named destinations out of 1000 (max. 500000)
+=======
+[3 <./network_structure.pdf>])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 132.
+ [4
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 132.
+ (./egpaper_final.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 132.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 132.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 132.
+ ) 
+Here is how much of TeX's memory you used:
+ 7365 strings out of 493091
+ 110369 string characters out of 6134964
+ 203218 words of memory out of 5000000
+ 10719 multiletter control sequences out of 15000+600000
+ 26994 words of font info for 64 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 36i,9n,38p,1791b,467s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
+xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texli
+ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive
+/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/201
+5/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-
+dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts
+/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw
+/times/utmri8a.pfb>
+Output written on egpaper_final.pdf (4 pages, 909964 bytes).
+PDF statistics:
+ 219 PDF objects out of 1000 (max. 8388607)
+ 184 compressed objects within 2 object streams
+ 32 named destinations out of 1000 (max. 500000)
+>>>>>>> Stashed changes
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
