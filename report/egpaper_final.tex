@@ -115,13 +115,18 @@ Therefore
 and for style loss we use the Frobenius norm of differences of the Gram matrices of $\hat y$ and $y_s$.
 \[ l_\text{style}(\hat y, y_s) = \sum_{i \in I_\phi} \frac{1}{N_i(\phi)}\|G^\phi_i(\hat y) - G^\phi_i(y_s)\|_F^2. \]
 \section{Experiments}
+
 \subsection{Training Details}
+
+Microsoft COCO dataset~\cite{lin2014microsoft} (contiaing around 80K images) was used for training our depth-preserving style transfer networks. Each training image was resized to $256\times256$. Maximum iterations were set to be $40000$, and a batch size of 3 was applied. These settings gave roughly 1.5 epochs over all the training data. The optimization was based on Adam~\cite{kingma2014adam} with a learning rate of $1\times10^{-3}$. No weight decay or dropout was used. The training was implemented using Torch~\cite{collobert2011torch7} and cuDNN~\cite{chetlur2014cudnn}. Each style training took around 7 hours on a single GTX Titan X GPU. As for the target losses, the content target loss is computed at VGG network layer $relu2\_2$, the style target loss is computed at VGG network layers $relu1\_2$, $relu2\_2$, $relu3\_3$ and $relu4\_3$, and the depth target loss is computed at the output layer of Chen \etal network~\cite{chen2016single}.
+
 
 \subsection{Qualitative Results}
 
 
-\section{Discussion \& Conclusion}
+\section{Discussion and Conlucsions}
 
+Some might argue that if the weight for the style target loss in the Johnson \etal~\cite{johnson2016perceptual} network is decreased, we could get similar results. But this is not the case. Note that the content target loss term is computed as the distance of the feature representations in the VGG network~\cite{simonyan2014very}, which was designed and trained for object recognition. The backgrounds in the content images, for instance, skies, roads, and lawns, are hard to be fully represented in those features. Also, the depth of an "object" (for example, the road in the teaser image) may change a lot in an image, and some pixel-level (or superpixel-level) loss should be included to preserve stereopsis of the transferred images. Therefore, an extra depth loss is necessitated in our problem setting.  
 
 
 {\small
