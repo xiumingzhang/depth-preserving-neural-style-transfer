@@ -130,12 +130,12 @@ Some might argue that if the weight for the style target loss in the Johnson \et
 
 The intuition of why this depth loss net works is that style is put onto the content images layer by layer, not equally, when including the depth loss. As we can see from the outputs of Johnson \etal~\cite{johnson2016perceptual} network, the style is transferred almost equally to different regions of the content images. This may destruct stereopsis of the transferred images. The depth loss network we employed here, however, penalizes ``equal style transfer" across the content images.  
 
-Some object textures are also preserved as a by-product, for example, the rock texture in Figure~\ref{fig:overview}
+Some textures in our transferred images are also preserved as a by-product, for example, the rock texture and the grass texture in Figure~?. Again, this is due to that under the depth loss penalization, background features can be captured and preserved. This helps preserve textures of background objects.
 
-
+In conclusion, the state-of-the-art work in style transfer~\cite{johnson2016perceptual} utilized the VGG network to capture perceptual features from content images, and they showed significant improvement of transfer speed compared to the previous work using pixel-level losses. However, the perceptual features extracted from layers in the VGG network can not fully represent background information. Especially, the depth of content images could not be preserved in some of their outputs. In this work, by combining the depth loss network with the perceptual losses, we demonstrated that our style transfer can preserve depth and stereopsis of the original content images, without losing the benefit of transferring speed. 
 
 {\small
-\bibliographystyle{ieee}`:q!:q
+\bibliographystyle{ieee}
 \bibliography{egbib}
 }
 
