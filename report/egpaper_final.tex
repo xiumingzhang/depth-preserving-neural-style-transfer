@@ -34,7 +34,7 @@
 \title{Depth-Preserving Style Transfer}
 
 \author{Xiuming Zhang\\
-Massachusetts Institute of Technology\\
+MIT CSAIL\\
 {\tt\small xiuming@mit.edu}\\
 \\
 Teammates: Ruizhi Liao \& Yu Xia
@@ -66,7 +66,13 @@ In this work we present a novel method which preserve the depth information of t
 
 Deep neural networks have gained much popularity in a wide range of computer vision tasks, from low-level tasks, such as image denoising~\cite{xie2012image} and sharpening, to mid-level tasks, such as keypoint detection~\cite{sun2013deep}, to high-level tasks, such as object recognition~\cite{krizhevsky2012imagenet}. Besides supervised tasks with ground truth of training data available (such as scene classification), deep neural networks are also capable of solving more abstract problems, where no ground truth exists for training data. Image style transfer---the process of applying the style of a style input image (\eg, Van Gogh's \textit{Starry Night}) to a content input image---is one such task, because there exists no ``ground-truth stylization'' for any given content input image. 
 
-Deep neural networks' capability of performing image style transfer was first demonstrated by~\cite{gatys2016image}, where neural networks are used to both transform images and compute loss. Under this optimization framework, the image transform network iteratively updates its output so that its content loss and style loss are minimized. This approach produces visually pleasant results, but suffers from slow performance due to its iterative nature. To address this issue, Johnson \etal~\cite{johnson2016perceptual} trains a residual neural network~\cite{he2016deep} that, once trained, only needs a feed-forward pass to stylize an input image. Although this method significantly reduces computational burden as compared with~\cite{gatys2016image}, it is unable to preserve the content image's variations in depth during style transfer (teaser figure B), hence destroying the sense of layering---a key concept in arts.
+Deep neural networks' capability of performing image style transfer was first demonstrated by~\cite{gatys2016image}, where neural networks are used to both transform images and compute loss. Under this optimization framework, the image transform network iteratively updates its output so that its content loss and style loss are minimized. This approach produces visually pleasant results, but suffers from slow performance due to its iterative nature. To address this issue, Johnson \etal~\cite{johnson2016perceptual} trains a residual neural network~\cite{he2016deep} that, once trained, only needs a feed-forward pass to stylize an input image. Although this method significantly reduces computational burden as compared with~\cite{gatys2016image}, it is unable to preserve the content image's variations in depth during style transfer (teaser figure B), hence destroying the sense of layering.
+
+Although crucial to human perception and aesthetic sense, depth preservation, to the best of our knowledge, has never been accounted for in image style transfer. One of the most common reasons behind this negligence lies in the difficulty of estimating the depth map given a single RGB image. Furthermore, we need the single-image depth estimation module to be fully differentiable in order to incorporate the module into our system for end-to-end training. \cite{chen2016single} proposed an hourglass-shape network that meets both requirements: it outputs a depth estimation map from a single RGB image, and it is fully differentiable. 
+
+In this paper, we advocate the use of depth loss, defined as the difference in depth perception between the input content image and output stylized image, in the task of image style transfer. We augment the loss network of~\cite{johnson2016perceptual} with a single-image depth estimation network computing how well depth is preserved in the stylized image. Specifically, 
+
+Our code is available for download at \url{http://github.com/xiumingzhang/depth-preserving-neural-style-transfer}.
 
 \section{Related Work}
 
