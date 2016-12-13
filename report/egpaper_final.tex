@@ -55,9 +55,7 @@ When the input scene exhibits large variations in depth (A), the current state o
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-Style transfer is defined as the process that given a content image and a style image it tries to migrate the style from the style image to the content image. Though it is not clear what the exact definition of style is, pattern transforming and matching are generally accepted.
-
-In this work we present a novel method which preserve the depth information of the content image while migrating the style.
+Image style transfer is the process of applying the style of a style image to a content image. Although there exists techniques that perform image style transfer with only one forward pass of the neural network, these techniques are unable to preserve depth variations in the content image, therefore destroying the sense of layering. In this work, we present a novel approach that preserves depth variations in the content image during style transfer. Extensive experiments show that our model outperforms the current state of the art both visually and quantitatively by a large margin. Besides demonstrating a substantial improvement to the state of the art, our work also points out a direction for future style transfer research that adding other perceptual loss (such as depth, shading, etc.) to the network can boost style transfer quality.
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
