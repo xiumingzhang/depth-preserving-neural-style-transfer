@@ -122,7 +122,15 @@ Microsoft COCO dataset~\cite{lin2014microsoft} (contiaing around 80K images) was
 
 
 \subsection{Qualitative Results}
+In this section we present some results regarding the quality of our outputs. Generally, Structural Similarity Index is a method to measure the similarity between 2 images. It can be seen as a quality measure if the other image is considered truth (or perfect). For our case, we need to calculate the index between the original input and style transfered images. We measured the Structural Similarity Index against the original input of our results and the results from Johnson et al. \cite{johnson2016perceptual} on all the input images we tested with the style files provided by \cite{johnson2016perceptual}.
+As shown in Figure~\ref{fig:ssim}, our results has a generally higher Structural Similarity Index than those from \cite{johnson2016perceptual}, which indicates that our method preserved much more structural information.
 
+\begin{figure*}
+\centering
+\includegraphics[scale=0.7]{ssim.eps}
+\caption{Comparison of Structural Similarity Indices Against the Input Image Between Ours and Johnson et al. \cite{johnson2016perceptual}}
+\label{fig:ssim}
+\end{figure*}
 
 \section{Discussion and Conlucsions}
 
