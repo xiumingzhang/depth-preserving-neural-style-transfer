@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: egpaper_final.aux
+The style file: ieee.bst
+Database file #1: egbib.bib
+Repeated entry---line 186 of file egbib.bib
+ : @article{wang2004image
+ :                       ,
+I'm skipping whatever remains of this entry
+Warning--there's a number but no series in collobert2011torch7
+You've used 23 entries,
+            2120 wiz_defined-function locations,
+            614 strings with 7949 characters,
+and the built_in function-call counts, 9778 in all, are:
+= -- 965
+> -- 484
+< -- 13
++ -- 190
+- -- 166
+* -- 638
+:= -- 1509
+add.period$ -- 72
+call.type$ -- 23
+change.case$ -- 152
+chr.to.int$ -- 0
+cite$ -- 24
+duplicate$ -- 410
+empty$ -- 741
+format.name$ -- 166
+if$ -- 2132
+int.to.chr$ -- 0
+int.to.str$ -- 23
+missing$ -- 23
+newline$ -- 118
+num.names$ -- 46
+pop$ -- 190
+preamble$ -- 1
+purify$ -- 129
+quote$ -- 0
+skip$ -- 336
+stack$ -- 0
+substring$ -- 600
+swap$ -- 160
+text.length$ -- 13
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 92
+warning$ -- 1
+while$ -- 86
+width$ -- 25
+write$ -- 250
+(There was 1 error message)
