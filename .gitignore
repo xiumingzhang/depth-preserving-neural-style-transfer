@@ -4,7 +4,6 @@ data
 .ipynb_checkpoints
 *.DS_Store
 *.t7
-*.pdf
 *.log
 
 
