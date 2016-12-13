@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{pdfpages}
 \usepackage{caption}
 \usepackage{subcaption}
 
@@ -102,6 +103,10 @@ To keep track of the depth information, our loss function is composed of 2 neura
 Therefore the training goal is to minimize the expected loss.
 
 \[ W^* \gets \arg \min_W \mathbb E_{\{x,y\}}[L(f_W(x), y)], \]
+
+%\begin{figure*}
+\includepdf[pages=1, pagecommand=\subsection{blub}]{images.pdf}
+%\end{figure*}
 
 where $\mathbb E_{\{x,y\}}$ is the estimation of the expectation via the (training) set $\{x,y\}$.
 
