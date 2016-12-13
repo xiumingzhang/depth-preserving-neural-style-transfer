@@ -4,45 +4,45 @@ The top-level auxiliary file: egpaper_final.aux
 The style file: ieee.bst
 Database file #1: egbib.bib
 Warning--there's a number but no series in collobert2011torch7
-You've used 18 entries,
+You've used 22 entries,
             2120 wiz_defined-function locations,
-            588 strings with 7100 characters,
-and the built_in function-call counts, 7527 in all, are:
-= -- 742
-> -- 384
-< -- 10
-+ -- 151
-- -- 132
-* -- 490
-:= -- 1178
-add.period$ -- 57
-call.type$ -- 18
-change.case$ -- 120
+            607 strings with 7742 characters,
+and the built_in function-call counts, 9383 in all, are:
+= -- 926
+> -- 461
+< -- 13
++ -- 181
+- -- 158
+* -- 603
+:= -- 1442
+add.period$ -- 69
+call.type$ -- 22
+change.case$ -- 145
 chr.to.int$ -- 0
-cite$ -- 19
-duplicate$ -- 312
-empty$ -- 557
-format.name$ -- 132
-if$ -- 1632
+cite$ -- 23
+duplicate$ -- 399
+empty$ -- 714
+format.name$ -- 158
+if$ -- 2054
 int.to.chr$ -- 0
-int.to.str$ -- 18
-missing$ -- 18
-newline$ -- 93
-num.names$ -- 36
-pop$ -- 147
+int.to.str$ -- 22
+missing$ -- 22
+newline$ -- 113
+num.names$ -- 44
+pop$ -- 185
 preamble$ -- 1
-purify$ -- 102
+purify$ -- 123
 quote$ -- 0
-skip$ -- 256
+skip$ -- 329
 stack$ -- 0
-substring$ -- 438
-swap$ -- 120
-text.length$ -- 10
+substring$ -- 570
+swap$ -- 159
+text.length$ -- 13
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 72
+type$ -- 88
 warning$ -- 1
-while$ -- 65
-width$ -- 20
-write$ -- 196
+while$ -- 82
+width$ -- 24
+write$ -- 239
 (There was 1 warning)

@@ -63,7 +63,9 @@ In this work we present a novel method which preserve the depth information of t
 
 \section{Introduction}
 
-Deep neural networks have gained much popularity in a wide range of computer vision tasks, from low-level tasks, such as image denoising and sharpening, to mid-level tasks, such as keypoint detection, to high-level tasks, such as object recognition.
+Deep neural networks have gained much popularity in a wide range of computer vision tasks, from low-level tasks, such as image denoising~\cite{xie2012image} and sharpening, to mid-level tasks, such as keypoint detection~\cite{sun2013deep}, to high-level tasks, such as object recognition~\cite{krizhevsky2012imagenet}. Besides supervised tasks with ground truth of training data available (such as scene classification), deep neural networks are also capable of solving more abstract problems, where no ground truth exists for training data. Image style transfer---the process of applying the style of a style input image (\eg, Van Gogh's \textit{Starry Night}) to a content input image---is one such task, because there exists no ``ground-truth stylization'' for any given content input image. 
+
+Deep neural networks' capability of performing image style transfer was first demonstrated by~\cite{gatys2016image}, where neural networks are used to both transform images and compute loss. Under this optimization framework, the image transform network iteratively updates its output so that its content loss and style loss are minimized. This approach produces visually pleasant results, but suffers from slow performance due to its iterative nature. To address this issue, Johnson \etal~\cite{johnson2016perceptual} trains a residual neural network~\cite{he2016deep} that, once trained, only needs a feed-forward pass to stylize an input image. Although this method significantly reduces computational burden as compared with~\cite{gatys2016image}, it is unable to preserve the content image's variations in depth during style transfer (teaser figure B), hence destroying the sense of layering---a key concept in arts.
 
 \section{Related Work}
 
