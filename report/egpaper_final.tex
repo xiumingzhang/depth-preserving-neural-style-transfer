@@ -100,6 +100,7 @@ Building on~\cite{zoran2015learning}, a recent work by Chen \etal proposes an en
 \caption{Network Structure Overview}
 \label{fig:overview}
 \end{figure*}
+
 The overview of our network structure is shown in Figure~\ref{fig:overview}. Compared to Johnson et al. \cite{johnson2016perceptual}'s work, our structure is featured in having a depth estimation network as part of our loss function. In all, our network is composed of 3 subnets: an image transformation network $f_W$, a perceptual loss network $\phi$ and a depth estimation network $\delta$. Similar to Johnson et al., the image transformation $f_W$ is a convolutional network which produce the output image $\hat y$ given the input image $x$ by $\hat y = f_W(x)$ (where $W$ is the weights of the network).
 
 To keep track of the depth information, our loss function is composed of 2 neural networks: the perceptual loss network and the depth estimation network. As mentioned in \cite{johnson2016perceptual}, pretrained convolutional neural networks are able to extract perceptual information and encode semantics which are useful for the loss function. Similarly, a pretrained depth estimation network has already learned to estimate the depth information from the single input image. Therefore we utilize a pre-trained image classification network for the perceptual loss part and a pretrained depth estimation network for the depth loss part. Specifically, our loss function is defined as a weighted linear combination of the content loss $l_\text{content}$, the style loss $l_\text{style}$ and the depth loss $l_\text{depth}$. 
@@ -110,9 +111,11 @@ Therefore the training goal is to minimize the expected loss.
 
 \[ W^* \gets \arg \min_W \mathbb E_{\{x,y\}}[L(f_W(x), y)], \]
 
-%\begin{figure*}
-\includepdf[pages=1, pagecommand=\subsection{blub}]{images.pdf}
-%\end{figure*}
+\begin{figure*}
+\vspace*{-1in}
+\hspace*{-0.7in}
+\includegraphics{images.pdf}
+\end{figure*}
 
 where $\mathbb E_{\{x,y\}}$ is the estimation of the expectation via the (training) set $\{x,y\}$.
 
