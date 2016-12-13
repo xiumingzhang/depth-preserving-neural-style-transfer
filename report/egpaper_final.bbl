@@ -46,6 +46,12 @@ L.~A. Gatys, A.~S. Ecker, and M.~Bethge.
 \newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
   Pattern Recognition}, pages 2414--2423, 2016.
 
+\bibitem{he2016deep}
+K.~He, X.~Zhang, S.~Ren, and J.~Sun.
+\newblock Deep residual learning for image recognition.
+\newblock In {\em Computer Vision and Pattern Recognition (CVPR), 2016 IEEE
+  Conference on}, 2016.
+
 \bibitem{johnson2016perceptual}
 J.~Johnson, A.~Alahi, and L.~Fei-Fei.
 \newblock Perceptual losses for real-time style transfer and super-resolution.
@@ -55,6 +61,12 @@ J.~Johnson, A.~Alahi, and L.~Fei-Fei.
 D.~Kingma and J.~Ba.
 \newblock Adam: A method for stochastic optimization.
 \newblock {\em arXiv preprint arXiv:1412.6980}, 2014.
+
+\bibitem{krizhevsky2012imagenet}
+A.~Krizhevsky, I.~Sutskever, and G.~E. Hinton.
+\newblock Imagenet classification with deep convolutional neural networks.
+\newblock In {\em Advances in neural information processing systems}, pages
+  1097--1105, 2012.
 
 \bibitem{li2015depth}
 B.~Li, C.~Shen, Y.~Dai, A.~van~den Hengel, and M.~He.
@@ -87,6 +99,12 @@ K.~Simonyan and A.~Zisserman.
 \newblock Very deep convolutional networks for large-scale image recognition.
 \newblock {\em arXiv preprint arXiv:1409.1556}, 2014.
 
+\bibitem{sun2013deep}
+Y.~Sun, X.~Wang, and X.~Tang.
+\newblock Deep convolutional network cascade for facial point detection.
+\newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition}, pages 3476--3483, 2013.
+
 \bibitem{todd2003visual}
 J.~T. Todd and J.~F. Norman.
 \newblock The visual perception of 3-d shape from multiple cues: Are observers
@@ -98,6 +116,12 @@ P.~Wang, X.~Shen, Z.~Lin, S.~Cohen, B.~Price, and A.~Yuille.
 \newblock Towards unified depth and semantic prediction from a single image.
 \newblock In {\em 2015 IEEE Conference on Computer Vision and Pattern
   Recognition (CVPR)}, pages 2800--2809. IEEE, 2015.
+
+\bibitem{xie2012image}
+J.~Xie, L.~Xu, and E.~Chen.
+\newblock Image denoising and inpainting with deep neural networks.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  341--349, 2012.
 
 \bibitem{zoran2015learning}
 D.~Zoran, P.~Isola, D.~Krishnan, and W.~T. Freeman.
