@@ -117,6 +117,12 @@ P.~Wang, X.~Shen, Z.~Lin, S.~Cohen, B.~Price, and A.~Yuille.
 \newblock In {\em 2015 IEEE Conference on Computer Vision and Pattern
   Recognition (CVPR)}, pages 2800--2809. IEEE, 2015.
 
+\bibitem{wang2004image}
+Z.~Wang, A.~C. Bovik, H.~R. Sheikh, and E.~P. Simoncelli.
+\newblock Image quality assessment: from error visibility to structural
+  similarity.
+\newblock {\em IEEE transactions on image processing}, 13(4):600--612, 2004.
+
 \bibitem{xie2012image}
 J.~Xie, L.~Xu, and E.~Chen.
 \newblock Image denoising and inpainting with deep neural networks.
