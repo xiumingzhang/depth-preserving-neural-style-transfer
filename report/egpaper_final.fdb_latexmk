@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex egpaper_final"] 1481600778 "egpaper_final.aux" "egpaper_final.bbl" "egpaper_final" 1481600909
+["bibtex egpaper_final"] 1481601195 "egpaper_final.aux" "egpaper_final.bbl" "egpaper_final" 1481601278
   "./ieee.bst" 1481245748 19623 f9cd22458ca68af2567100f1aed905e8 ""
   "egbib.bib" 1481598724 6515 985ddaff935f2c711039f4b748a2fcfa ""
-  "egpaper_final.aux" 1481600909 4837 8c2c287259099a2b3c961d68321e5a16 ""
+  "egpaper_final.aux" 1481601278 4870 8f2eca3a3ff9219e55729c30ade87995 ""
   "egpaper_final.bcf" 0 -1 0 ""
   (generated)
   "egpaper_final.bbl"
   "egpaper_final.blg"
-["pdflatex"] 1481600908 "egpaper_final.tex" "egpaper_final.pdf" "egpaper_final" 1481600909
+["pdflatex"] 1481601277 "egpaper_final.tex" "egpaper_final.pdf" "egpaper_final" 1481601278
   "/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1136768653 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -114,15 +114,15 @@
   "/usr/local/texlive/2016/texmf.cnf" 1463979140 577 2938757e76f31531e65cc647e3507693 ""
   "cvpr.sty" 1481245748 8185 634a88d765f4332d3553d206c8b60fe0 ""
   "cvpr_eso.sty" 1481245748 3878 6aa7c08ff2621006e0603349e40a30a8 ""
-  "egpaper_final.aux" 1481600909 4837 8c2c287259099a2b3c961d68321e5a16 ""
-  "egpaper_final.bbl" 1481600778 5235 f6888bb0582fd8f9cfb388d11ef6804e "bibtex egpaper_final"
-  "egpaper_final.tex" 1481600858 19302 c204537bbad31590d4f98d0d97619d92 ""
+  "egpaper_final.aux" 1481601278 4870 8f2eca3a3ff9219e55729c30ade87995 ""
+  "egpaper_final.bbl" 1481601195 5235 f6888bb0582fd8f9cfb388d11ef6804e "bibtex egpaper_final"
+  "egpaper_final.tex" 1481601277 19517 6a131efbf654ecc1a271e687c0a621e0 ""
   "eso-pic.sty" 1481245748 9460 d2935ae95b5cd343fcf5887ff530288d ""
   "images.pdf" 1481600906 4724916 88dd521d1619f03c66619e12e60de352 ""
   "network_structure.pdf" 1481409658 174098 d9fea92949dd67326f3cf8379b7624bc ""
   "results/teaser.pdf" 1481314581 669729 368702c519e839f84140f3b79722b9e8 ""
   "ssim.eps" 1481597909 34848 cfe5d5b532e5343a16dd84879b880fd7 ""
   (generated)
-  "egpaper_final.log"
-  "egpaper_final.aux"
   "egpaper_final.pdf"
+  "egpaper_final.aux"
+  "egpaper_final.log"

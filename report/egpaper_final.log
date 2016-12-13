@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  12 DEC 2016 22:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  12 DEC 2016 22:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -470,7 +470,7 @@ Package pdftex.def Info: network_structure.pdf used on input line 99.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[2] <images.pdf, id=106, 614.295pt x 794.97pt>
+[2] <images.pdf, id=107, 614.295pt x 794.97pt>
 File: images.pdf Graphic file (type pdf)
  <use images.pdf>
 Package pdftex.def Info: images.pdf used on input line 117.
@@ -483,10 +483,7 @@ Overfull \hbox (68.74849pt too wide) in paragraph at lines 116--118
 
 LaTeX Warning: Float too large for page by 81.30183pt on input line 118.
 
-
-Underfull \vbox (badness 3039) has occurred while \output is active []
-
- [3 <./network_structure.pdf>] [4 <./images.pdf>]
+[3 <./network_structure.pdf>] [4 <./images.pdf>]
 Package epstopdf Info: Source file: <ssim.eps>
 (epstopdf)                    date: 2016-12-12 21:58:29
 (epstopdf)                    size: 34848 bytes
@@ -498,7 +495,7 @@ ssim.eps>
 (epstopdf)             \includegraphics on input line 146.
 Package epstopdf Info: Output file is already uptodate.
 
-<ssim-eps-converted-to.pdf, id=373, 700.6175pt x 252.945pt>
+<ssim-eps-converted-to.pdf, id=374, 700.6175pt x 252.945pt>
 File: ssim-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ssim-eps-converted-to.pdf>
@@ -522,11 +519,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 166.
 Here is how much of TeX's memory you used:
  8061 strings out of 493014
  121530 string characters out of 6133351
- 217526 words of memory out of 5000000
+ 218526 words of memory out of 5000000
  11435 multiletter control sequences out of 15000+600000
  27509 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,9n,42p,1791b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,9n,42p,1863b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -541,10 +538,10 @@ xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/201
 dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw
 /times/utmri8a.pfb>
-Output written on egpaper_final.pdf (6 pages, 5641416 bytes).
+Output written on egpaper_final.pdf (6 pages, 5641613 bytes).
 PDF statistics:
- 455 PDF objects out of 1000 (max. 8388607)
- 330 compressed objects within 4 object streams
+ 456 PDF objects out of 1000 (max. 8388607)
+ 331 compressed objects within 4 object streams
  44 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
