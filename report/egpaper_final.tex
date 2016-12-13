@@ -54,16 +54,16 @@ When the input scene exhibits large variations in depth (A), the current state o
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-   Style transfer is defined as the process that given a content image and a style image it tries to migrate the style from the style image to the content image. Though it is not clear what the exact definition of style is, pattern transforming and matching are generally accepted.
+Style transfer is defined as the process that given a content image and a style image it tries to migrate the style from the style image to the content image. Though it is not clear what the exact definition of style is, pattern transforming and matching are generally accepted.
 
-   In this work we present a novel method which preserve the depth information of the content image while migrating the style.
+In this work we present a novel method which preserve the depth information of the content image while migrating the style.
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
 
 \section{Introduction}
 
-convolutional neural network (CNN)
+Deep neural networks have gained much popularity in a wide range of computer vision tasks, from low-level tasks, such as image denoising and sharpening, to mid-level tasks, such as keypoint detection, to high-level tasks, such as object recognition.
 
 \section{Related Work}
 
@@ -75,7 +75,7 @@ Style transfer can be considered as a more general form of texture transfer, whe
 
 With the recent prevalence of deep neural networks, researchers started exploring how high-level features extracted by neural networks can be utilized for the task of style transfer. For instance, Gatys \etal perform image style transfer by synthesizing a new image that matches both contents of the content image and styles of the style image~\cite{gatys2016image}. In particular, they extract content representations from the content image and style representations from the style image using the VGG network~\cite{simonyan2014very}. Since the VGG network is trained to perform object recognition and localization tasks, the layers deep down the network hierarchy capture object information (i.e., the contents) of the content image and are insensitive to the exact pixel values. Therefore, outputs from these deep layers serve as good content targets that the synthesized image tries to achieve at varying levels of resolution. As for style, they adopt a feature space built on filter responses in any layer of the network~\cite{gatys2015texture}. By design, the feature space captures texture information without global arrangement. Finally, they minimize a weighted sum of the content and style loss under a CNN framework, where forward and backward passes are iteratively performed. Building upon this work, the authors recently devised a way of preserve the original colors in the content image~\cite{gatys2016preserving}. However, the high computational cost still remains as a drawback in~\cite{gatys2016image}.
 
-To reduce the computational burden and generate visually similar-quality results, Johnson \etal~\cite{johnson2016perceptual} train a feed-forward image transform network to approximate solutions to the optimization problem posed in~\cite{gatys2016image}. In particular, their system consists of a deep residual CNN as the image transform network and the pretrained VGG network~\cite{simonyan2014very} as the fixed loss network. For each style image, the image transform network is trained to apply this style to a content image while minimizing the style and content losses as measured by the loss network. This method produces reasonably good results with low computational cost, but tends to lose the depth variations and destroy layering in the content image as illustrated in the teaser figure. This issue can be addressed by incorporating depth preservation losses into the loss function, as shown later in this paper.
+To reduce the computational burden and generate visually similar-quality results, Johnson \etal~\cite{johnson2016perceptual} train a feed-forward image transform network to approximate solutions to the optimization problem posed in~\cite{gatys2016image}. In particular, their system consists of a deep residual convolutional neural network (CNN) as the image transform network and the pretrained VGG network~\cite{simonyan2014very} as the fixed loss network. For each style image, the image transform network is trained to apply this style to a content image while minimizing the style and content losses as measured by the loss network. This method produces reasonably good results with low computational cost, but tends to lose the depth variations and destroy layering in the content image as illustrated in the teaser figure. This issue can be addressed by incorporating depth preservation losses into the loss function, as shown later in this paper.
 
 \subsection{Single-Image Depth Estimation}
 
