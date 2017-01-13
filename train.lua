@@ -234,7 +234,7 @@ cmd:option('-backend', 'cuda', 'cuda|opencl')
     if depth_crit then
       local target = {content_target=y}
       depth_loss = depth_crit:forward(out, target) -- may need to edit target
-      depth_loss = depth_loss * opt.percep_loss_weight
+      depth_loss = depth_loss * opt.depth_loss_weight
       local grad_out_depth = depth_crit:backward(out, target)
       if grad_out then
         grad_out:add(opt.depth_loss_weight, grad_out_depth)
